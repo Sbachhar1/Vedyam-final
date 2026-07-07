@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Your Order | VEDYAM</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #faf8f5;
+            --cream-deep: #f2ede4;
+            --charcoal: #2b2724;
+            --charcoal-soft: #5a5450;
+            --olive: #5c6b47;
+            --olive-deep: #465236;
+            --gold: #b8863b;
+            --line: #e3dccd;
+            --radius: 2px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Jost', sans-serif; }
+        body { background-color: var(--cream); color: var(--charcoal); -webkit-font-smoothing: antialiased; }
+        
+        header.nav {
+            background: rgba(250, 248, 245, 0.88);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--line);
+        }
+        .nav-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 18px 6vw;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .wordmark {
+            font-family: 'Fraunces', serif;
+            font-size: 1.35rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            color: var(--charcoal);
+        }
+        .wordmark span { color: var(--olive); }
+        .back-link {
+            font-size: 0.82rem;
+            color: var(--olive);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .track-container {
+            max-width: 600px;
+            margin: 60px auto;
+            padding: 40px 30px;
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: 0 10px 40px -15px rgba(43,39,36,0.12);
+            border: 1px solid var(--line);
+            text-align: center;
+        }
+        .track-container h1 {
+            font-family: 'Fraunces', serif;
+            font-weight: 500;
+            color: var(--charcoal);
+            margin-bottom: 10px;
+            font-size: 2.2rem;
+        }
+        .track-container p.subtitle {
+            font-size: 0.92rem;
+            color: var(--charcoal-soft);
+            margin-bottom: 30px;
+        }
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 35px;
+        }
+        .search-box input {
+            flex: 1;
+            padding: 14px 16px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            color: var(--charcoal);
+            background: var(--cream);
+        }
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--olive);
+            box-shadow: 0 0 0 3px rgba(92,107,71,0.1);
+        }
+        .search-box button {
+            background: var(--charcoal);
+            color: var(--cream);
+            border: none;
+            padding: 14px 28px;
+            font-size: 0.92rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: var(--radius);
+            transition: background 0.2s ease;
+        }
+        .search-box button:hover {
+            background: var(--olive-deep);
+        }
+        
+        .status-container {
+            display: none;
+            text-align: left;
+            margin-top: 20px;
+            padding-top: 30px;
+            border-top: 1px dashed var(--line);
+        }
+        .milestone {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        .milestone::before {
+            content: '';
+            position: absolute;
+            left: 9px;
+            top: 20px;
+            width: 1px;
+            height: calc(100% + 10px);
+            background: var(--line);
+        }
+        .milestone:last-child::before {
+            display: none;
+        }
+        .dot {
+            width: 20px;
+            height: 20px;
+            background: var(--cream-deep);
+            border-radius: 50%;
+            display: inline-block;
+            z-index: 2;
+            border: 2px solid white;
+            flex-shrink: 0;
+        }
+        .dot.active {
+            background: var(--gold);
+            box-shadow: 0 0 8px rgba(184,134,59,0.5);
+        }
+        .info h4 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.1rem;
+            color: var(--charcoal);
+            margin-bottom: 3px;
+            font-weight: 500;
+        }
+        .info p {
+            color: var(--charcoal-soft);
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <header class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="wordmark">VEDYAM<span>.</span></a>
+            <a href="index.html" class="back-link">← Back to Shop</a>
+        </div>
+    </header>
+
+    <div class="track-container">
+        <h1>Track Shipment</h1>
+        <p class="subtitle">Enter your AWB tracking number below to view shipment history.</p>
+        <div class="search-box">
+            <input type="text" id="tracking-id" placeholder="e.g. NMB-739150">
+            <button onclick="getTrackingStatus()">Track</button>
+        </div>
+        <div class="status-container" id="status-box"></div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const params = new URLSearchParams(window.location.search);
+            const awb = params.get('awb');
+            if(awb) {
+                document.getElementById('tracking-id').value = awb;
+                getTrackingStatus();
+            }
+        };
+
+        function getTrackingStatus() {
+            const awb = document.getElementById('tracking-id').value.trim();
+            if(!awb) return alert("Please enter your AWB tracking number.");
+
+            fetch(`/api/track-status?awb=${awb}`)
+                .then(res => res.json())
+                .then(data => {
+                    const box = document.getElementById('status-box');
+                    box.style.display = 'block';
+                    box.innerHTML = '';
+                    if(data.error) { 
+                        box.innerHTML = `<p style="color:#a5432e; font-size: 0.9rem; text-align: center;">${data.error}</p>`; 
+                        return; 
+                    }
+
+                    data.milestones.forEach(m => {
+                        box.innerHTML += `
+                            <div class="milestone">
+                                <span class="dot ${m.status === 'active' ? 'active' : ''}"></span>
+                                <div class="info">
+                                    <h4>${m.title}</h4>
+                                    <p>${m.description || ''}</p>
+                                </div>
+                            </div>`;
+                    });
+                })
+                .catch(err => alert("Unable to load details at this time."));
+        }
+    </script>
+</body>
+</html>
