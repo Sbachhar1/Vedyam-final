@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VEDYAM — Daily Health Mix</title>
+<meta name="description" content="VEDYAM Daily Health Mix — Ashwagandha, Yashtimadhu, Amalaki & Sonthi, every morning.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="product.jpg" fetchpriority="high">
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<!-- Supabase CDN for Real OAuth Integration -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+  :root{
+    --cream:#faf8f5;
+    --cream-deep:#f2ede4;
+    --charcoal:#2b2724;
+    --charcoal-soft:#5a5450;
+    --olive:#5c6b47;
+    --olive-deep:#465236;
+    --gold:#b8863b;
+    --gold-soft:#d9b170;
+    --line:#e3dccd;
+    --radius:2px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--cream);
+    color:var(--charcoal);
+    font-family:'Jost', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3, .display{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    letter-spacing:-0.01em;
+    color:var(--charcoal);
+  }
+
+  .eyebrow{
+    text-transform:uppercase;
+    letter-spacing:0.18em;
+    font-size:0.72rem;
+    font-weight:600;
+    color:var(--olive);
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  img{max-width:100%;display:block;}
+
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 6vw;
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky;
+    top:0;
+    z-index:40;
+    background:rgba(250,248,245,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1180px;
+    margin:0 auto;
+    padding:18px 6vw;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .wordmark{
+    font-family:'Fraunces', serif;
+    font-size:1.35rem;
+    font-weight:600;
+    letter-spacing:0.08em;
+  }
+  .wordmark span{color:var(--olive);}
+  .nav-tag{
+    font-size:0.7rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--charcoal-soft);
+    display:none;
+  }
+  @media(min-width:640px){ .nav-tag{display:block;} }
+
+  /* Header controls */
+  .nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .nav-link-track {
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--olive);
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: 'Jost', sans-serif;
+  }
+  .btn-sign-in {
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--charcoal-soft);
+    background: none;
+    border: 1px solid var(--line);
+    padding: 6px 14px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    transition: all 0.2s ease;
+  }
+  .btn-sign-in:hover {
+    background: var(--charcoal);
+    color: var(--cream);
+    border-color: var(--charcoal);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:64px 0 40px;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:48px;
+    align-items:center;
+  }
+  @media(min-width:900px){
+    .hero-grid{grid-template-columns:0.95fr 1.05fr; gap:64px;}
+  }
+
+  .art-stage{
+    position:relative;
+    z-index:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .seal{
+    position:absolute;
+    width:112%;
+    max-width:520px;
+    aspect-ratio:1/1;
+    animation:spin 60s linear infinite;
+    opacity:0.9;
+    pointer-events:none;
+  }
+  @media(prefers-reduced-motion: reduce){ .seal{animation:none;} }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+
+  .hero-copy{
+    position:relative;
+    z-index:2;
+  }
+
+  .product-frame{
+    position:relative;
+    width:78%;
+    max-width:380px;
+    aspect-ratio:4/5;
+    background:var(--cream-deep);
+    border-radius:var(--radius);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    box-shadow:0 24px 60px -20px rgba(43,39,36,0.28);
+  }
+  #product-img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    background:var(--cream-deep);
+  }
+  #product-img.is-hidden{ display:none; }
+
+  .img-fallback{
+    display:none;
+    width:100%;
+    height:100%;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    text-align:center;
+    padding:20px;
+    background:
+      radial-gradient(circle at 50% 42%, rgba(92,107,71,0.10), transparent 60%),
+      var(--cream-deep);
+  }
+  .img-fallback.is-visible{ display:flex; }
+  .img-fallback .fallback-mark{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.4rem;
+    color:var(--olive-deep);
+    letter-spacing:0.02em;
+  }
+  .img-fallback .fallback-note{
+    font-size:0.72rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--charcoal-soft);
+    max-width:22ch;
+  }
+
+  .frame-badge{
+    position:absolute;
+    bottom:14px;
+    left:14px;
+    right:14px;
+    background:rgba(250,248,245,0.92);
+    border:1px solid var(--line);
+    padding:9px 12px;
+    font-size:0.68rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    text-align:center;
+    color:var(--charcoal-soft);
+  }
+
+  .hero-copy .eyebrow{margin-bottom:16px;}
+  .hero-copy h1{
+    font-size:clamp(2.4rem, 5.4vw, 3.6rem);
+    line-height:1.05;
+    margin-bottom:18px;
+  }
+  .hero-copy h1 em{
+    font-style:italic;
+    color:var(--olive);
+  }
+  .hero-copy p.lede{
+    font-size:1.02rem;
+    line-height:1.7;
+    color:var(--charcoal-soft);
+    max-width:46ch;
+    margin-bottom:28px;
+  }
+
+  /* Quantity Selector Styling */
+  .qty-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 20px 0 25px;
+  }
+  .qty-btn {
+    width: 38px;
+    height: 36px;
+    border: 1px solid var(--line);
+    background: white;
+    font-family: 'Jost', sans-serif;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border-radius: var(--radius);
+    transition: background 0.2s;
+  }
+  .qty-btn:hover {
+    background: var(--cream-deep);
+  }
+  #qty-val {
+    font-size: 1.1rem;
+    font-weight: 500;
+    width: 30px;
+    text-align: center;
+  }
+
+  .price-row{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:26px;
+  }
+  .price{
+    font-family:'Fraunces', serif;
+    font-size:2rem;
+    font-weight:600;
+  }
+  .price-note{
+    font-size:0.82rem;
+    color:var(--charcoal-soft);
+  }
+
+  .btn-buy{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--charcoal);
+    color:var(--cream);
+    border:none;
+    padding:17px 34px;
+    font-family:'Jost', sans-serif;
+    font-size:0.92rem;
+    font-weight:600;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    cursor:pointer;
+    border-radius:var(--radius);
+    transition:background 0.25s ease, transform 0.2s ease;
+  }
+  .btn-buy:hover{ background:var(--olive-deep); transform:translateY(-1px); }
+  .btn-buy:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+  .btn-buy svg{width:16px;height:16px;}
+
+  .trust-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:22px;
+    margin-top:30px;
+    font-size:0.78rem;
+    color:var(--charcoal-soft);
+  }
+  .trust-row span{display:flex;align-items:center;gap:7px;}
+  .dot{width:5px;height:5px;border-radius:50%;background:var(--gold);display:inline-block;}
+
+  /* ---------- RITUAL SECTION -----
