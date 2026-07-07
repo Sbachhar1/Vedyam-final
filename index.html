@@ -607,19 +607,51 @@
     box-shadow:0 8px 20px -8px rgba(70,82,54,0.5);
     transition:transform 0.15s ease, box-shadow 0.15s ease;
   }
-  .btn-upi:hover{transform:translateY(-1px);box-shadow:0 10px 24px -8px rgba(70,82,54,0.55);}
-  .btn-upi:active{transform:translateY(0);}
-  .btn-upi:disabled{opacity:0.6;cursor:not-allowed;transform:none;}
-  .pay-secure{display:flex;align-items:center;justify-content:center;gap:6px;font-size:0.7rem;letter-spacing:0.02em;color:var(--charcoal-soft);margin-bottom:14px;}
-  .pay-secure svg{flex-shrink:0;opacity:0.7;}
-  .pay-status{font-size:0.82rem;text-align:center;padding:10px 12px;border-radius:var(--radius);display:none;margin:-2px 0 14px;}
-  .pay-status.success{display:block;background:rgba(92,107,71,0.12);color:var(--olive-deep);font-weight:600;}
-  .pay-status.pending{display:block;background:rgba(184,134,59,0.12);color:var(--gold);}
-  .pay-note{font-size:0.8rem;color:var(--charcoal-soft);line-height:1.5;margin-bottom:18px;}
-  .payment-panel{display:none;}
-  .payment-panel.visible{display:block;}
-  .btn-google-auth{width:100%;background:white;color:var(--charcoal);border:1px solid var(--line);padding:12px;font-family:'Jost',sans-serif;font-size:0.9rem;font-weight:500;cursor:pointer;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;gap:10px;margin-top:14px;transition:background 0.2s ease;}
-  .btn-google-auth:hover{background:var(--cream-deep);}
+  .btn-upi:hover{ transform:translateY(-1px); box-shadow:0 10px 24px -8px rgba(70,82,54,0.55); }
+  .btn-upi:active{ transform:translateY(0); }
+  .btn-upi:disabled{ opacity:0.6; cursor:not-allowed; transform:none; }
+
+  .pay-secure{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    font-size:0.7rem;
+    letter-spacing:0.02em;
+    color:var(--charcoal-soft);
+    margin-bottom:14px;
+  }
+  .pay-secure svg{ flex-shrink:0; opacity:0.7; }
+
+  .pay-status{
+    font-size:0.82rem;
+    text-align:center;
+    padding:10px 12px;
+    border-radius:var(--radius);
+    display:none;
+    margin:-2px 0 14px;
+  }
+  .pay-status.success{
+    display:block;
+    background:rgba(92,107,71,0.12);
+    color:var(--olive-deep);
+    font-weight:600;
+  }
+  .pay-status.pending{
+    display:block;
+    background:rgba(184,134,59,0.12);
+    color:var(--gold);
+  }
+
+  .pay-note{
+    font-size:0.8rem;
+    color:var(--charcoal-soft);
+    line-height:1.5;
+    margin-bottom:18px;
+  }
+
+  .payment-panel{ display:none; }
+  .payment-panel.visible{ display:block; }
 </style>
 </head>
 <body>
@@ -701,4 +733,9 @@
 <div style="padding: 40px 20px; background-color: #faf8f5; text-align: center;">
     <h3 style="font-family: serif; color: #b38646; letter-spacing: 2px; font-size: 14px; margin-bottom: 30px; text-transform: uppercase;">WHY VEDYAM</h3>
 
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 500px; margin: 0 auto; text-align: cen
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 500px; margin: 0 auto; text-align: center;">
+
+        <!-- Icon 1: Amalaki -->
+        <div>
+            <div style="font-size: 28px; margin-bottom: 10px;">🌿</div>
+            <h4 style="font-family: serif; font-size: 16px; margin: 5px 0; color: #222;">Amalaki Bas
