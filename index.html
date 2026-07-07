@@ -333,4 +333,652 @@
   .trust-row span{display:flex;align-items:center;gap:7px;}
   .dot{width:5px;height:5px;border-radius:50%;background:var(--gold);display:inline-block;}
 
+  /* ---------- RITUAL SECTION ---------- */
+  .ritual{ padding:78px 0; }
+  .ritual-head{ text-align:center; max-width:560px; margin:0 auto 50px; }
+  .ritual-head h2{ font-size:clamp(1.8rem,3.4vw,2.4rem); margin:14px 0 12px; }
+  .ritual-head p{ color:var(--charcoal-soft); line-height:1.7; }
+
+  .ritual-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:38px;
+  }
+  @media(min-width:760px){ .ritual-grid{grid-template-columns:repeat(3,1fr); gap:30px;} }
+
+  .ritual-card{ position:relative; padding-left:0; }
+  .ritual-mark{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.1rem;
+    color:var(--gold);
+    margin-bottom:10px;
+    display:block;
+  }
+  .ritual-card h3{ font-size:1.15rem; margin-bottom:10px; }
+  .ritual-card p{ font-size:0.88rem; color:var(--charcoal-soft); line-height:1.7; }
+
+  /* ---------- QUOTE / SEAL BAND ---------- */
+  .band{
+    background:var(--olive-deep);
+    color:var(--cream);
+    padding:70px 0;
+    text-align:center;
+  }
+  .band .wrap{ max-width:720px; }
+  .band .eyebrow{ color:var(--gold-soft); }
+  .band blockquote{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:clamp(1.4rem,3vw,2rem);
+    line-height:1.5;
+    margin:18px 0 20px;
+  }
+  .band cite{
+    font-style:normal;
+    font-size:0.78rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:rgba(250,248,245,0.7);
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:56px 0 110px;
+  }
+  @media(min-width:640px){ footer{padding-bottom:56px;} }
+  .footer-grid{
+    display:flex;
+    flex-direction:column;
+    gap:26px;
+  }
+  @media(min-width:640px){
+    .footer-grid{ flex-direction:row; align-items:center; justify-content:space-between; }
+  }
+  .footer-brand .wordmark{ font-size:1.15rem; margin-bottom:6px; }
+  .footer-brand p{ font-size:0.78rem; color:var(--charcoal-soft); max-width:34ch; }
+  .footer-contact{ font-size:0.82rem; }
+  .footer-contact a{ color:var(--olive); font-weight:600; }
+  .footer-fine{
+    border-top:1px solid var(--line);
+    margin-top:36px;
+    padding-top:20px;
+    font-size:0.7rem;
+    color:var(--charcoal-soft);
+    text-align:center;
+  }
+
+  /* ---------- STICKY MOBILE CTA ---------- */
+  .sticky-cta{
+    position:fixed;
+    left:0; right:0; bottom:0;
+    z-index:50;
+    background:rgba(250,248,245,0.96);
+    backdrop-filter:blur(8px);
+    border-top:1px solid var(--line);
+    padding:12px 5vw;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+  }
+  @media(min-width:640px){ .sticky-cta{ display:none; } }
+  .sticky-cta .price{ font-size:1.15rem; }
+  .sticky-cta .btn-buy{ padding:13px 22px; font-size:0.82rem; }
+
+  /* ---------- MODALS ---------- */
+  .modal-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(43,39,36,0.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:100;
+  }
+  .modal-overlay.open{ display:flex; }
+
+  .modal{
+    background:var(--cream);
+    width:100%;
+    max-width:440px;
+    max-height:90vh;
+    overflow-y:auto;
+    border-radius:var(--radius);
+    padding:34px 30px;
+    position:relative;
+    box-shadow:0 30px 80px -20px rgba(0,0,0,0.47);
+  }
+  .modal-close{
+    position:absolute;
+    top:16px; right:16px;
+    background:none;
+    border:none;
+    font-size:1.3rem;
+    line-height:1;
+    color:var(--charcoal-soft);
+    cursor:pointer;
+    padding:6px;
+  }
+  .modal-close:focus-visible{ outline:2px solid var(--gold); }
+
+  .modal .eyebrow{ margin-bottom:8px; }
+  .modal h2{ font-size:1.5rem; margin-bottom:6px; }
+  .modal p.sub{ font-size:0.84rem; color:var(--charcoal-soft); margin-bottom:24px; }
+
+  .field{ margin-bottom:18px; }
+  .field label{
+    display:block;
+    font-size:0.74rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    font-weight:600;
+    color:var(--charcoal-soft);
+    margin-bottom:7px;
+  }
+  .field input, .field textarea{
+    width:100%;
+    border:1px solid var(--line);
+    background:#fff;
+    padding:12px 14px;
+    font-family:'Jost', sans-serif;
+    font-size:0.92rem;
+    color:var(--charcoal);
+    border-radius:var(--radius);
+    resize:none;
+  }
+  .field input:focus, .field textarea:focus{
+    outline:none;
+    border-color:var(--olive);
+    box-shadow:0 0 0 3px rgba(92,107,71,0.14);
+  }
+  .field textarea{ min-height:78px; }
+
+  .field-error{
+    font-size:0.72rem;
+    color:#a5432e;
+    margin-top:5px;
+    display:none;
+  }
+  .field.invalid input, .field.invalid textarea{ border-color:#a5432e; }
+  .field.invalid .field-error{ display:block; }
+
+  .modal-order-summary{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:var(--cream-deep);
+    border:1px solid var(--line);
+    padding:12px 14px;
+    font-size:0.82rem;
+    margin-bottom:22px;
+  }
+  .modal-order-summary strong{ font-family:'Fraunces', serif; }
+
+  .btn-submit{
+    width:100%;
+    background:var(--olive-deep);
+    color:var(--cream);
+    border:none;
+    padding:16px;
+    font-family:'Jost', sans-serif;
+    font-weight:600;
+    font-size:0.9rem;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    border-radius:var(--radius);
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+    transition:background 0.2s ease;
+  }
+  .btn-submit:hover{ background:var(--olive); }
+  .btn-submit svg{ width:16px; height:16px; }
+
+  .payment-group{ margin-bottom:18px; }
+  .payment-group > label.group-label{
+    display:block;
+    font-size:0.74rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    font-weight:600;
+    color:var(--charcoal-soft);
+    margin-bottom:10px;
+  }
+  .pay-option{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    border:1px solid var(--line);
+    background:#fff;
+    padding:12px 14px;
+    border-radius:var(--radius);
+    margin-bottom:10px;
+    cursor:pointer;
+    transition:border-color 0.2s ease, background 0.2s ease;
+  }
+  .pay-option:has(input:checked){
+    border-color:var(--olive);
+    background:var(--cream-deep);
+  }
+  .pay-option input{
+    margin-top:3px;
+    accent-color:var(--olive-deep);
+    flex-shrink:0;
+  }
+  .pay-option .pay-text{ font-size:0.88rem; }
+  .pay-option .pay-text strong{ display:block; font-size:0.92rem; margin-bottom:2px; }
+  .pay-option .pay-text span{ color:var(--charcoal-soft); font-size:0.8rem; }
+
+  .amount-summary{
+    background:var(--cream-deep);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:12px 14px;
+    font-size:0.85rem;
+    margin-bottom:18px;
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+  }
+  .amount-summary .row{ display:flex; justify-content:space-between; }
+  .amount-summary .row.total{ font-weight:600; border-top:1px dashed var(--line); padding-top:6px; margin-top:2px; }
+
+  .btn-upi{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+    background:linear-gradient(135deg, var(--olive-deep), var(--olive));
+    color:#fff;
+    border:none;
+    padding:15px;
+    font-family:'Jost', sans-serif;
+    font-weight:600;
+    font-size:0.9rem;
+    letter-spacing:0.03em;
+    border-radius:var(--radius);
+    margin-bottom:10px;
+    cursor:pointer;
+    box-shadow:0 8px 20px -8px rgba(70,82,54,0.5);
+    transition:transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-upi:hover{ transform:translateY(-1px); box-shadow:0 10px 24px -8px rgba(70,82,54,0.55); }
+  .btn-upi:active{ transform:translateY(0); }
+  .btn-upi:disabled{ opacity:0.6; cursor:not-allowed; transform:none; }
+
+  .pay-secure{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    font-size:0.7rem;
+    letter-spacing:0.02em;
+    color:var(--charcoal-soft);
+    margin-bottom:14px;
+  }
+  .pay-secure svg{ flex-shrink:0; opacity:0.7; }
+
+  .pay-status{
+    font-size:0.82rem;
+    text-align:center;
+    padding:10px 12px;
+    border-radius:var(--radius);
+    display:none;
+    margin:-2px 0 14px;
+  }
+  .pay-status.success{
+    display:block;
+    background:rgba(92,107,71,0.12);
+    color:var(--olive-deep);
+    font-weight:600;
+  }
+  .pay-status.pending{
+    display:block;
+    background:rgba(184,134,59,0.12);
+    color:var(--gold);
+  }
+
+  .pay-note{
+    font-size:0.8rem;
+    color:var(--charcoal-soft);
+    line-height:1.5;
+    margin-bottom:18px;
+  }
+
+  .payment-panel{ display:none; }
+  .payment-panel.visible{ display:block; }
+
+  /* Brand Styled Auth Modal */
+  .btn-google-auth {
+    width: 100%;
+    background: white;
+    color: var(--charcoal);
+    border: 1px solid var(--line);
+    padding: 12px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 14px;
+    transition: background 0.2s ease;
+  }
+  .btn-google-auth:hover {
+    background: var(--cream-deep);
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="wordmark">VEDYAM<span>.</span></div>
+    <div class="nav-controls">
+      <div class="nav-tag">Ayurvedic Daily Ritual</div>
+      <button class="nav-link-track" id="navTrackLink" type="button">Track Order</button>
+      <button class="btn-sign-in" id="navAuthBtn" type="button">Sign In</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="art-stage">
+      <svg class="seal" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="100" cy="100" r="98" fill="none" stroke="#5c6b47" stroke-width="0.6" opacity="0.5"/>
+        <circle cx="100" cy="100" r="88" fill="none" stroke="#b8863b" stroke-width="0.4" opacity="0.6"/>
+        <g fill="#5c6b47" opacity="0.55">
+          <circle cx="100" cy="6" r="2.4"/>
+          <circle cx="153" cy="24" r="1.6"/>
+          <circle cx="188" cy="70" r="2"/>
+          <circle cx="188" cy="130" r="1.6"/>
+          <circle cx="153" cy="176" r="2.2"/>
+          <circle cx="100" cy="194" r="1.8"/>
+          <circle cx="47" cy="176" r="2"/>
+          <circle cx="12" cy="130" r="1.6"/>
+          <circle cx="12" cy="70" r="2.2"/>
+          <circle cx="47" cy="24" r="1.8"/>
+        </g>
+        <circle cx="100" cy="100" r="60" fill="none" stroke="#2b2724" stroke-width="0.4" opacity="0.25"/>
+      </svg>
+      <div class="product-frame">
+        <img src="product.jpg" id="product-img" alt="VEDYAM Daily Health Mix 100g pack"
+             width="380" height="475" loading="eager" fetchpriority="high" decoding="async">
+        <div class="img-fallback" id="imgFallback">
+          <span class="fallback-mark">VEDYAM</span>
+          <span class="fallback-note">Product photo coming soon</span>
+        </div>
+        <div class="frame-badge">100g Pack · Small Batch · No Preservatives</div>
+      </div>
+    </div>
+
+    <div class="hero-copy">
+      <span class="eyebrow">The Morning Ritual</span>
+      <h1>A spoonful of<br><em>ancient wisdom,</em><br>every day.</h1>
+      <p class="lede">VEDYAM Daily Health Mix blends Ashwagandha, Yashtimadhu, Amalaki and Sonthi into one simple morning ritual — rooted in Ayurveda, made for how you actually live today.</p>
+
+      <!-- Functional Quantity Selector -->
+      <div class="qty-container">
+        <button class="qty-btn" id="qty-minus" type="button">−</button>
+        <span id="qty-val">1</span>
+        <button class="qty-btn" id="qty-plus" type="button">+</button>
+      </div>
+
+      <div class="price-row">
+        <span class="price">₹99</span>
+        <span class="price-note">/ 100g pack · inclusive of taxes</span>
+      </div>
+
+      <button class="btn-buy" id="openModalBtn" type="button">
+        Buy Now
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+
+      <div class="trust-row">
+        <span><i class="dot"></i>No refined sugar</span>
+        <span><i class="dot"></i>100% natural ingredients</span>
+        <span><i class="dot"></i>Order via WhatsApp</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- START OF WHY VEDYAM SECTION -->
+<div style="padding: 40px 20px; background-color: #faf8    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--olive);
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: 'Jost', sans-serif;
+  }
+  .btn-sign-in {
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--charcoal-soft);
+    background: none;
+    border: 1px solid var(--line);
+    padding: 6px 14px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    transition: all 0.2s ease;
+  }
+  .btn-sign-in:hover {
+    background: var(--charcoal);
+    color: var(--cream);
+    border-color: var(--charcoal);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:64px 0 40px;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:48px;
+    align-items:center;
+  }
+  @media(min-width:900px){
+    .hero-grid{grid-template-columns:0.95fr 1.05fr; gap:64px;}
+  }
+
+  .art-stage{
+    position:relative;
+    z-index:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .seal{
+    position:absolute;
+    width:112%;
+    max-width:520px;
+    aspect-ratio:1/1;
+    animation:spin 60s linear infinite;
+    opacity:0.9;
+    pointer-events:none;
+  }
+  @media(prefers-reduced-motion: reduce){ .seal{animation:none;} }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+
+  .hero-copy{
+    position:relative;
+    z-index:2;
+  }
+
+  .product-frame{
+    position:relative;
+    width:78%;
+    max-width:380px;
+    aspect-ratio:4/5;
+    background:var(--cream-deep);
+    border-radius:var(--radius);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    box-shadow:0 24px 60px -20px rgba(43,39,36,0.28);
+  }
+  #product-img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    background:var(--cream-deep);
+  }
+  #product-img.is-hidden{ display:none; }
+
+  .img-fallback{
+    display:none;
+    width:100%;
+    height:100%;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    text-align:center;
+    padding:20px;
+    background:
+      radial-gradient(circle at 50% 42%, rgba(92,107,71,0.10), transparent 60%),
+      var(--cream-deep);
+  }
+  .img-fallback.is-visible{ display:flex; }
+  .img-fallback .fallback-mark{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.4rem;
+    color:var(--olive-deep);
+    letter-spacing:0.02em;
+  }
+  .img-fallback .fallback-note{
+    font-size:0.72rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--charcoal-soft);
+    max-width:22ch;
+  }
+
+  .frame-badge{
+    position:absolute;
+    bottom:14px;
+    left:14px;
+    right:14px;
+    background:rgba(250,248,245,0.92);
+    border:1px solid var(--line);
+    padding:9px 12px;
+    font-size:0.68rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    text-align:center;
+    color:var(--charcoal-soft);
+  }
+
+  .hero-copy .eyebrow{margin-bottom:16px;}
+  .hero-copy h1{
+    font-size:clamp(2.4rem, 5.4vw, 3.6rem);
+    line-height:1.05;
+    margin-bottom:18px;
+  }
+  .hero-copy h1 em{
+    font-style:italic;
+    color:var(--olive);
+  }
+  .hero-copy p.lede{
+    font-size:1.02rem;
+    line-height:1.7;
+    color:var(--charcoal-soft);
+    max-width:46ch;
+    margin-bottom:28px;
+  }
+
+  /* Quantity Selector Styling */
+  .qty-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 20px 0 25px;
+  }
+  .qty-btn {
+    width: 38px;
+    height: 36px;
+    border: 1px solid var(--line);
+    background: white;
+    font-family: 'Jost', sans-serif;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border-radius: var(--radius);
+    transition: background 0.2s;
+  }
+  .qty-btn:hover {
+    background: var(--cream-deep);
+  }
+  #qty-val {
+    font-size: 1.1rem;
+    font-weight: 500;
+    width: 30px;
+    text-align: center;
+  }
+
+  .price-row{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:26px;
+  }
+  .price{
+    font-family:'Fraunces', serif;
+    font-size:2rem;
+    font-weight:600;
+  }
+  .price-note{
+    font-size:0.82rem;
+    color:var(--charcoal-soft);
+  }
+
+  .btn-buy{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--charcoal);
+    color:var(--cream);
+    border:none;
+    padding:17px 34px;
+    font-family:'Jost', sans-serif;
+    font-size:0.92rem;
+    font-weight:600;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    cursor:pointer;
+    border-radius:var(--radius);
+    transition:background 0.25s ease, transform 0.2s ease;
+  }
+  .btn-buy:hover{ background:var(--olive-deep); transform:translateY(-1px); }
+  .btn-buy:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+  .btn-buy svg{width:16px;height:16px;}
+
+  .trust-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:22px;
+    margin-top:30px;
+    font-size:0.78rem;
+    color:var(--charcoal-soft);
+  }
+  .trust-row span{display:flex;align-items:center;gap:7px;}
+  .dot{width:5px;height:5px;border-radius:50%;background:var(--gold);display:inline-block;}
+
   /* ---------- RITUAL SECTION -----
